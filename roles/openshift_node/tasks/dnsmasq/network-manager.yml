@@ -22,4 +22,10 @@
       value: none
       present: "{{ openshift_node_dnsmasq_disable_network_manager_dns | default(false) | bool }}"
 
+- name: Restart dnsmasq after actualization
+  service:
+    name: dnsmasq
+    state: restarted
+  notify: restart dnsmasq
+
 - meta: flush_handlers
